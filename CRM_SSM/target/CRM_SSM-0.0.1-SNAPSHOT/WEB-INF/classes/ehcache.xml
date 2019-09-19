@@ -1,0 +1,42 @@
+<ehcache>
+    <!--表示硬盘上保存缓存的位置。默认是临时文件夹。-->
+     <diskStore path="E:\\work\\tmpdir"/>
+    <!--默认缓存配置，如果类没有做特定的设置，则使用这里配置的缓存属性。
+     LRU – 最近最少使用的:移除最长时间不被使用的对象。
+	2.      FIFO – 先进先出:按对象进入缓存的顺序来移除它们。
+	3.      SOFT – 软引用:移除基于垃圾回收器状态和软引用规则的对象。
+	4.      WEAK – 弱引用:更积极地移除基于垃圾收集器状态和弱引用规则的对象。
+	
+	
+       maxInMemory  - 设置缓存中允许保存的最大对象（pojo）数量
+       eternal -设置对象是否永久保存，如果为true，则缓存中的数据永远不销毁，一直保存。
+       timeToIdleSeconds - 设置空闲销毁时间。只有eternal为false时才起作用。表示从现在到上次访问时间如果超过这个值，则缓存数据销毁
+       timeToLiveSeconds-设置活动销毁时间。表示从现在到缓存创建时间如果超过这个值，则缓存自动销毁
+       overflowToDisk - 设置是否在超过保存数量时，将超出的部分保存到硬盘上。-->
+    <defaultCache
+        maxElementsInMemory="1500"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="300"
+        overflowToDisk="true"
+        maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"/>
+   
+        
+        
+        
+<!-- 也可以通过name设置针对某个类的缓存配置
+    <cache name="com.pojo.EmpPoJo"
+        maxElementsInMemory="10"
+        eternal="false"
+        timeToIdleSeconds="0"
+        timeToLiveSeconds="0"
+        overflowToDisk="true"
+        maxElementsOnDisk="10000000"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="LRU"/>
+      -->  
+</ehcache>
+
+

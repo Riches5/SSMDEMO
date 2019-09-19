@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="js/jquery.js"></script>
+
+<script type="text/javascript">
+$(function(){	
+	//导航切换
+	$(".menuson li").click(function(){
+		$(".menuson li.active").removeClass("active")
+		$(this).addClass("active");
+	});
+	
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('ul').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('ul').slideUp();
+		}else{
+			$(this).next('ul').slideDown();
+		}
+	});
+})	
+</script>
+
+
+</head>
+
+<body style="background:#f0f9fd;">
+	<div class="lefttop"><span></span>CRM客户关系系统</div>
+    
+    <dl class="leftmenu">
+        
+    <dd>
+    <div class="title">
+    <span><img src="images/leftico01.png" /></span>营销管理
+    </div>
+    	<ul class="menuson">
+        <li><cite></cite><a href="sale/list.html" target="rightFrame">销售机会管理</a><i></i></li>
+        <li><cite></cite><a href="sale/dev.html" target="rightFrame">客户开发计划</a><i></i></li>
+        <li><cite></cite><a href="error.html" target="rightFrame">404页面</a><i></i></li>
+        </ul>    
+    </dd>
+        
+    
+    <dd>
+    <div class="title">
+    <span><img src="images/leftico02.png" /></span>客户管理
+    </div>
+    <ul class="menuson">
+        <li><cite></cite><a href="cust/list.html"  target="rightFrame">客户信息管理</a><i></i></li>
+        <li><cite></cite><a href="cust/lost.html"  target="rightFrame">客户流失管理</a><i></i></li>
+        </ul>     
+    </dd> 
+    
+    
+    <dd><div class="title"><span><img src="images/leftico03.png" /></span>服务管理</div>
+    <ul class="menuson">
+        <li><cite></cite><a href="service/add.html"  target="rightFrame">服务创建</a><i></i></li>
+        <li><cite></cite><a href="service/list.html"  target="rightFrame">服务列表</a><i></i></li>
+		<li><cite></cite><a href="service/arch.html"  target="rightFrame">服务归档</a><i></i></li>
+    </ul>    
+    </dd>  
+    
+    
+    <dd><div class="title"><span><img src="images/leftico04.png" /></span>统计报表</div>
+    <ul class="menuson">
+        <li><cite></cite><a href="rept/contr.html" target="rightFrame">客户贡献分析</a><i></i></li>
+        <li><cite></cite><a href="rept/cons.html" target="rightFrame">客户构成分析</a><i></i></li>
+        <li><cite></cite><a href="rept/ser.html" target="rightFrame">客户服务分析</a><i></i></li>
+        <li><cite></cite><a href="rept/lost.html" target="rightFrame">客户流失分析</a><i></i></li>
+    </ul>
+    </dd>   
+	
+	 <dd><div class="title"><span><img src="images/leftico04.png" /></span>基础数据</div>
+    <ul class="menuson">
+        <li><cite></cite><a href="base/product.html" target="rightFrame">产品信息管理</a><i></i></li>
+        <li><cite></cite><a href="base/storage.html" target="rightFrame">库存信息管理</a><i></i></li>
+    </ul>
+    
+    </dd>   
+	
+	 <dd><div class="title"><span><img src="images/leftico04.png" /></span>用户管理</div>
+    <ul class="menuson">
+        <li><cite></cite><a href="user/add.html" target="rightFrame">添加用户</a><i></i></li>
+        <li><cite></cite><a href="user/list.html" target="rightFrame">用户信息</a><i></i></li>
+		<li><cite></cite><a href="user/role.html" target="rightFrame">角色管理</a><i></i></li>
+    </ul>
+    
+    </dd>   
+    
+    </dl>
+    
+</body>
+</html>

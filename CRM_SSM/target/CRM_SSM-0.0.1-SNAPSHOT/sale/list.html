@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+});
+</script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script>
+$(function(){	
+		$.ajax({
+			type:"get",
+			url:"${pageContext.request.contextPath}/sale/queryMarketingci.do",
+			async:true,
+			dataType: "json",
+			success:function(data){
+				alert(data);
+				var v = $("<table border=1 width='500px' height='300px' align='center'>");
+				v.append($("<tr><th>客户名称</th><th>概要</th><th>联系人</th><th>联系人电话</th></tr>"));
+				$("#databody").html(v);
+				for(var i=0;i<data.size;i++){
+					//alert(i);
+					v.append("<tr>"+
+								"<td>"+data[i].marketingci_cname+"</td>"+
+							 	"<td>"+data[i].marketingci_outline+"</td>"+
+							 	"<td>"+data[i].marketingci_contacts+"</td>"+
+							 	"<td>"+data[i].marketingci_tel+"</td>"+
+							 "</tr>");
+				}
+				v.append($("</table>"));
+				
+			},error:function(data){
+				alert(data[1]);
+			}
+		});
+	}
+	);
+</script>
+
+</head>
+
+
+<body id="databody">
+<!-- 
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">营销管理</a></li>
+    <li><a href="#">销售机会管理</a></li>
+    </ul>
+    </div>
+    
+    <div class="rightinfo">
+    
+    <div class="tools">    
+    	<ul class="toolbar">
+       <a href="add.html"><li ><span><img src="../images/t01.png" /></span>添加</li></a>
+        <li class="click"><span><img src="../images/t03.png" /></span>删除</li>
+        </ul>      
+    </div>
+	
+	
+    <div id="tab2" class="tabson">
+	<ul class="seachform">
+	<li><label>客户名称:</label><input name="" type="text" class="scinput" /></li>
+	<li><label>概要:</label><input name="" type="text" class="scinput" /></li>
+    <li><label>联系人:</label><input name="" type="text" class="scinput" /></li> 
+    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+    </div>
+	
+	
+    	
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th><input name="" type="checkbox" value="" checked="checked"/></th>
+        <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
+        <th>客户名称</th>
+        <th>概要</th>
+        <th>联系人</th>
+        <th>联系人电话</th>
+        <th>创建时间</th>
+        <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><input name="" type="checkbox" value="" /></td>
+		<td>1</td>
+        <td>睿智数码</td>
+        <td>采购笔记本电脑意向	</td>
+        <td>刘先生</td>
+        <td>13729239239</td>
+        <td>2007年12月06日</td>
+        <td>    
+		<img onclick="window.location.href='linkman.html';" title="指派" src="../images/bt_linkman.gif" style="border:0;cursor:pointer;width:16px">
+		<img onclick="window.location='edit.html'" title="编辑" src="../images/t02.png"  style="border:0;cursor:hand;width:16px;cursor:pointer"/>
+		<img onclick="" title="删除" src="../images/t03.png"  style="border:0;cursor:hand;width:16px;cursor:pointer"/>		
+		</td>
+        </tr> 
+     
+        
+  
+         
+        </tbody>
+    </table>
+    
+   
+    <div class="pagin">
+    	<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+        <ul class="paginList">
+        <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
+        <li class="paginItem"><a href="javascript:;">1</a></li>
+        <li class="paginItem current"><a href="javascript:;">2</a></li>
+        <li class="paginItem"><a href="javascript:;">3</a></li>
+        <li class="paginItem"><a href="javascript:;">4</a></li>
+        <li class="paginItem"><a href="javascript:;">5</a></li>
+        <li class="paginItem more"><a href="javascript:;">...</a></li>
+        <li class="paginItem"><a href="javascript:;">10</a></li>
+        <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+        </ul>
+    </div>
+    
+    
+    <div class="tip">
+    	<div class="tiptop"><span>提示信息</span><a></a></div>
+        
+      <div class="tipinfo">
+        <span><img src="../images/t03.png" /></span>
+        <div class="tipright">
+        <p>是否确认对信息的删除 ？</p>
+        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+        </div>
+        </div>
+        
+        <div class="tipbtn">
+        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+        <input name="" type="button"  class="cancel" value="取消" />
+        </div>
+    
+    </div>
+    
+    
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+ -->
+</body>
+
+</html>

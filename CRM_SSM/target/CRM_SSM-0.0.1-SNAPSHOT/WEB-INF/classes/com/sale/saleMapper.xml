@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- mapper标签用来配置java对象与sql之间的映射关系，namespace是一个描述该配置的唯一id -->
+<mapper namespace="com.sale">
+<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+	<select id="selectMarketingci" resultType="com.sale.mapper.Marketingci">
+	select marketingci_cname,marketingci_outline,marketingci_contacts,marketingci_tel from marketingci
+	</select>
+	
+	
+	
+</mapper>
+

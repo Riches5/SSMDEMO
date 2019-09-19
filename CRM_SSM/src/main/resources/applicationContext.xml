@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	
+	<!-- 配置数据源 -->
+	<bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>  
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm"/>
+		<property name="user" value="root"/>
+		 <property name="password" value="123456"/>
+		 <property name="maxIdleTime" value="10"/>
+		 <property name="maxPoolSize" value="50"/>
+	</bean>
+
+
+<!-- SqlSessionFactory实例    -->
+	<bean id="mysqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 数据连接对象 -->
+		<property name="dataSource" >
+			<ref bean="ds" />
+		</property>
+		<property name="configLocation">
+				<value>classpath:mybatis-config.xml</value>
+		</property>
+	</bean>
+	
+</beans>

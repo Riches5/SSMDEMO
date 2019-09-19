@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- mapper标签用来配置java对象与sql之间的映射关系，namespace是一个描述该配置的唯一id -->
+<mapper namespace="com.user">
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+	
+	<parameterMap  type="com.user.mapper.UserMapper" id="userinfo">
+		<parameter property="user_name" javaType="java.lang.String"/>
+		<parameter property="user_pwd" javaType="java.lang.String"/>
+	</parameterMap>
+	
+	
+	<select id="loginSQL" parameterMap="userinfo" resultType="int">
+		select count(userinfo_id) from userinfo 
+			where userinfo_name=#{user_name} and userinfo_pwd=#{user_pwd}
+	</select>
+
+	
+	
+</mapper>
+

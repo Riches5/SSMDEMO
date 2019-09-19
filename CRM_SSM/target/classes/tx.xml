@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 利用AOP切入事务    
+		(IOC/DI:控制反转，主要是利用IOC容器的构造和设置注入属性、集合或对象)
+		(AOP:在某些方法运行时，将某些行为切入进去,切入时机包括方法运行前，运行期间、运行后等等，所以
+			aop也叫做面向方面编程、面向切面编程、面向方法编程) -->
+			
+<!-- 配置数据源事务管理器，该对象需要注入一个数据源（哪个数据源要做事务管理）-->
+	<bean id="dsmanager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"/>
+	</bean>
+ 
+<aop:config>
+<!-- 切入点 :准备要切入别的行为的一个点-->
+	<aop:pointcut id="daopointcut" expression="execution(* com.*.dao.*(..) )" />
+	<!-- 将切入点和行为绑定 -->
+	<aop:advisor advice-ref="TxBean" pointcut-ref="daopointcut"/>
+</aop:config>
+
+
+<!-- 切面: 要切入别的行为-->
+<tx:advice id="TxBean" transaction-manager="dsmanager">
+	<tx:attributes>
+		<tx:method name="select*" read-only="true"/>
+		<tx:method name="*" read-only="true"/>
+		<tx:method name="insert*" propagation="REQUIRED"/>
+		<tx:method name="update*" propagation="REQUIRED"/>
+		<tx:method name="delete*" propagation="REQUIRED"/>
+	</tx:attributes>
+</tx:advice>
+	
+
+</beans>
